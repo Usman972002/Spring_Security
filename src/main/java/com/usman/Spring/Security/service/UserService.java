@@ -1,22 +1,23 @@
 package com.usman.Spring.Security.service;
 
-import com.usman.Spring.Security.model.User;
-import com.usman.Spring.Security.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.usman.Spring.Security.repo.UserRepo;
+import com.usman.Spring.Security.model.User;
+
 @Service
 public class UserService {
 
-
     @Autowired
     private UserRepo repo;
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(12);
 
-    public User saveUser(User user){
+    public User saveUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         System.out.println(user.getPassword());
-        return repo.save(user);
+        return repo.save(user) ;
+
     }
 }
